@@ -6,4 +6,5 @@ app_name = 'blog'
 
 urlpatterns = [
     path('', views.BlogListView.as_view(), name='home'),
+    path('post/<int:pk>', views.BlogDetailView.as_view(), name='post-detail'),
 ]

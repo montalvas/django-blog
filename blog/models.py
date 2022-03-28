@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.urls import reverse
 
 # Create your models here.
 
@@ -25,9 +26,14 @@ class Post(models.Model):
     objects = models.Manager()
     get_published = PublishedManager()
     
+    def get_absolute_url(self):
+        return reverse('blog:post-detail', args=[self.pk])
+    
     class Meta:
         ordering = ('-published',)
         # ordenação decrescente pela data de publicação
     
     def __str__(self):
         return self.title
+    
+    

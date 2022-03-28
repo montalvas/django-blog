@@ -6,12 +6,13 @@ Home
 {% endblock title %}
 
 {% block content %}
-<p>Conteúdo da home</p>
+<h1 class="my-4">Conteúdo da home</h1>
 
-<ul>
+<div class="post-entry">
 {% for post in posts %}
-    <li>{{ post.title }}</li>
+    <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}<a></h2>
+    <p>{{ post.content }}</p>
 {% endfor %}
-</ul>
+</div>
 
 {% endblock content %}
