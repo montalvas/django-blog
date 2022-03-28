@@ -15,7 +15,7 @@ class Post(models.Model):
         ('publicado', 'Publicado')
     )
     title = models.CharField('Título', max_length=250)
-    slug = models.SlugField('Slug', max_length=250)
+    slug = models.SlugField('Slug', max_length=250, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Autor')
     content = models.TextField('Conteúdo')
     published = models.DateTimeField('Publicado', default=timezone.now)
@@ -27,7 +27,8 @@ class Post(models.Model):
     get_published = PublishedManager()
     
     def get_absolute_url(self):
-        return reverse('blog:post-detail', args=[self.pk])
+        return reverse('blog:post-detail', args=[self.slug])
+    
     
     class Meta:
         ordering = ('-published',)

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2 class="my-4">Novo Post</h2>
+<hr>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-success">Cadastrar</button>
+    <a href="{% url 'blog:home' %}" class="btn btn-danger">Cancelar</a>
+</form>
+
+{% endblock content %}
