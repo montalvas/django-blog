@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
+from django.urls import reverse_lazy
 
 # Create your views here.
 class BlogListView(ListView):
@@ -17,7 +18,7 @@ class BlogCreateView(CreateView):
     template_name = 'blog/post-new.html'
     model = Post
     fields = ['title', 'content']
-    success_url = 'blog:home'
+    success_url = reverse_lazy('blog:home')
     
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -28,7 +29,8 @@ class BlogUpdateView(UpdateView):
     template_name = 'blog/post-update.html'
     model = Post
     fields = ['title', 'content']
-    success_url = 'blog:home'
+    success_url = reverse_lazy('blog:home')
     
 class BlogDeleteView(DeleteView):
     model = Post
+    success_url = reverse_lazy('blog:home')
