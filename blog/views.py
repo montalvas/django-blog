@@ -9,6 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 # USER
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 admin = User.objects.get(id=1)
 
@@ -23,7 +24,7 @@ class BlogDetailView(DetailView):
     model = Post
     context_object_name = 'post'
     
-class BlogCreateView(SuccessMessageMixin, CreateView):
+class BlogCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'blog/post-new.html'
     model = Post
     fields = ['title', 'content']
@@ -41,7 +42,7 @@ class BlogCreateView(SuccessMessageMixin, CreateView):
         
         return super().form_valid(form)
     
-class BlogUpdateView(SuccessMessageMixin, UpdateView):
+class BlogUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'blog/post-update.html'
     model = Post
     fields = ['title', 'content']
@@ -54,7 +55,7 @@ class BlogUpdateView(SuccessMessageMixin, UpdateView):
             field=self.object.title
         )
     
-class BlogDeleteView(SuccessMessageMixin, DeleteView):
+class BlogDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'blog/post-delete.html'
     model = Post
     success_url = reverse_lazy('blog:home')

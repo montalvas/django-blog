@@ -9,6 +9,7 @@
 
 <p>{{ post.content }}</p>
 
+{% if request.user.is_authenticated %}
 <p>
     <a href="{% url 'blog:post-update' post.slug %}" class="btn btn-success">
         Editar
@@ -18,5 +19,6 @@
         Excluir
     </a>
 </p>
+{% endif %}
 
 {% endblock content %}
