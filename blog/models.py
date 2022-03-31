@@ -43,7 +43,7 @@ class Post(models.Model):
 
 
 def post_pre_save(signal, instance, sender, **kwargs):
-    instance.slug = slugify(instance.title)
+    instance.slug = f'{instance.pk}-' + slugify(instance.title)
 
 signals.pre_save.connect(post_pre_save, sender=Post)
     
