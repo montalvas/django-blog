@@ -3,6 +3,15 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
 from django.urls import reverse_lazy
 
+# MESSAGES
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+
+# USER
+from django.contrib.auth.models import User
+
+admin = User.objects.get(id=1)
+
 # Create your views here.
 class BlogListView(ListView):
     template_name = 'blog/home.html'
@@ -14,23 +23,43 @@ class BlogDetailView(DetailView):
     model = Post
     context_object_name = 'post'
     
-class BlogCreateView(CreateView):
+class BlogCreateView(SuccessMessageMixin, CreateView):
     template_name = 'blog/post-new.html'
     model = Post
     fields = ['title', 'content']
     success_url = reverse_lazy('blog:home')
+    success_message = "%(field)s criado."
+    
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            field=self.object.title
+        )
     
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.author = admin  #self.request.user
         
         return super().form_valid(form)
     
-class BlogUpdateView(UpdateView):
+class BlogUpdateView(SuccessMessageMixin, UpdateView):
     template_name = 'blog/post-update.html'
     model = Post
     fields = ['title', 'content']
     success_url = reverse_lazy('blog:home')
+    success_message = "%(field)s alterado com sucesso."
     
-class BlogDeleteView(DeleteView):
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            field=self.object.title
+        )
+    
+class BlogDeleteView(SuccessMessageMixin, DeleteView):
+    template_name = 'blog/post-delete.html'
     model = Post
     success_url = reverse_lazy('blog:home')
+    success_message = "Deletado com sucesso"
+    
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(BlogDeleteView, self).delete(request, *args, **kwargs)
