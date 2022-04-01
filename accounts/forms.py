@@ -18,3 +18,4 @@ class UserForm(UserCreationForm):
         
         if User.objects.filter(email=e).exists():
             raise ValidationError('O e-mail já está cadastrado.')
+        return e

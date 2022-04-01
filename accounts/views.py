@@ -21,7 +21,6 @@ class UserLogoutView(LogoutView):
     
 class SignUpView(SuccessMessageMixin, CreateView):
     template_name = 'accounts/signup.html'
-    model = User
     form_class = UserForm
     success_url = reverse_lazy('accounts:login')
     success_message = "Usuário criado com sucesso."
