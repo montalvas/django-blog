@@ -5,15 +5,15 @@
 {% block content %}
 <div class="row">
     <div class="col-md-4 mx-auto">    
-        <h3 class="my-4">Autenticação</h3>
+        <h3 class="my-4">Cadastrar Usuário</h3>
 
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
 
             <div class="mt-4">
-                <button type="submit" class="btn btn-primary">Login</button>
-                <a  href="{% url 'accounts:signup' %}" class="btn btn-secondary">Cadastrar</a>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <a  href="{% url 'accounts:login' %}" class="btn btn-secondary">Login</a>
             </div>
         </form>     
     </div>

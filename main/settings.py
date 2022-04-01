@@ -150,6 +150,10 @@ LOGOUT_REDIRECT_URL = 'blog:home'
 
 LOGIN_URL = 'accounts:login'
 
+# CRISPY
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 
 

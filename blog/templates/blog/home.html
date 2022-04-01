@@ -24,7 +24,7 @@ Home
         {% if request.user.is_authenticated %}
         <a class="btn btn-primary" href="{% url 'blog:post-new' %}">Nova postagem</a>
         {% else %}
-        <em><a href="{% url 'accounts:login' %}">Registre-se</a> para cadastrar uma nova postagem!</em>
+        <em><a href="{% url 'accounts:signup' %}">Registre-se</a> para cadastrar uma nova postagem!</em>
         {% endif %}
     </caption>
     <thead class="table-dark">
