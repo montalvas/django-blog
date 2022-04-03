@@ -12,20 +12,20 @@
     </div>
     {% endfor %}
 {% endif %}
-
-<div class="row">
-    <div class="col-md-4 mx-auto">    
-        <h3 class="my-4">Autenticação</h3>
-
+<div class="card col-md-6 mx-auto">
+    <div class="card-header">
+        <h3 class="card-title text-center">Autenticação</h3>
+    </div>
+    <div class="card-body">
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
 
-            <div class="mt-4">
+            <div class="mt-4 justify-center">
                 <button type="submit" class="btn btn-primary">Login</button>
                 <a  href="{% url 'accounts:signup' %}" class="btn btn-secondary">Cadastrar</a>
             </div>
-        </form>     
+        </form>
     </div>
-</div>
+  </div>
 {% endblock content %}
