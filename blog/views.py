@@ -8,10 +8,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 # USER
-from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-admin = User.objects.get(id=1)
 
 # Create your views here.
 class BlogListView(ListView):
@@ -38,7 +35,7 @@ class BlogCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         )
     
     def form_valid(self, form):
-        form.instance.author = admin  #self.request.user
+        form.instance.author = self.request.user
         
         return super().form_valid(form)
     
