@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Category
 
 
 # admin.site.register(Post) Outra forma de cadastrar
@@ -25,3 +25,7 @@ class PostAdmin(admin.ModelAdmin):
     
     prepopulated_fields = {'slug': ('title',)}
     # cria o slug automaticamente utilizando o title como base
+    
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created')

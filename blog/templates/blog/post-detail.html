@@ -7,6 +7,9 @@
 <div class="card col-md-6 mx-auto">
     <div class="card-header">
         <h3 class="card-title text-center">{{ post.title }}</h3>
+        {% for category in post.category.all  %}
+        <span class="badge rounded-pill bg-primary text-light">{{ category }}</span>
+        {% endfor %}
     </div>
     <div class="card-body">
         <p>{{ post.content }}</p>

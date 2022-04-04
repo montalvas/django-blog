@@ -12,6 +12,22 @@ from django.template.defaultfilters import slugify
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super(PublishedManager, self).get_queryset().filter(status='publicado')
+    
+class Category(models.Model):
+    name = models.CharField('Nome', max_length=100)
+    created = models.DateTimeField('Criado', auto_now_add=True)
+    updated = models.DateField('atualizado', auto_now=True)
+    
+    class Meta:
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+        ordering = ['-created']
+    
+    def __str__(self):
+        return self.name
+    
+def get_default_category():
+    return Category.objects.get_or_create(name='Geral')[0]
 
 class Post(models.Model):
     STATUS = (
@@ -22,6 +38,8 @@ class Post(models.Model):
     slug = models.SlugField('Slug', max_length=250, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Autor')
     content = models.TextField('Conteúdo')
+    category = models.ManyToManyField(Category, default=get_default_category, related_name='get_posts')
+    image = models.ImageField(upload_to='blog', null=True, blank=True)
     published = models.DateTimeField('Publicado', default=timezone.now)
     created = models.DateTimeField('Criado', auto_now_add=True)
     updated = models.DateField('atualizado', auto_now=True)
