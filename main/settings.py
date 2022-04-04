@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts',
     # libraries
     'crispy_forms',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -153,6 +154,21 @@ LOGIN_URL = 'accounts:login'
 # CRISPY
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# CK_EDITOR
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ],
+        'height': 300,
+        'width': 'auto',
+    },
+}
 
 
 

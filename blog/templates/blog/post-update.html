@@ -11,11 +11,12 @@
     <div class="card-body">
         <form method="post">
             {% csrf_token %}
+            {{ form.media }}
             {{ form|crispy }}
 
             <div class="mt-4">
                 <button type="submit" class="btn btn-success">Salvar</button>
-                <a href="{{ post.get_absolute_url }}" class="btn btn-danger">Cancelar</a>
+                <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>

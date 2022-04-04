@@ -12,11 +12,11 @@
         {% endfor %}
     </div>
     <div class="card-body">
-        <p>{{ post.content }}</p>
+        <p>{{ post.content|safe }}</p>
     </div>
     {% if request.user == post.author %}
     <div class="card-footer">
-        <a href="{% url 'blog:post-update' post.slug %}" class="btn btn-success">
+        <a href="{% url 'blog:post-update' post.slug %}" class="btn btn-primary">
             Editar
         </a>
         

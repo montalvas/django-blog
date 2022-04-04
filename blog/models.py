@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 # SIGNALS
 from django.db.models import signals
@@ -37,7 +38,7 @@ class Post(models.Model):
     title = models.CharField('Título', max_length=250)
     slug = models.SlugField('Slug', max_length=250, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Autor')
-    content = models.TextField('Conteúdo')
+    content = RichTextField()
     category = models.ManyToManyField(Category, default=get_default_category, related_name='get_posts')
     image = models.ImageField(upload_to='blog', null=True, blank=True)
     published = models.DateTimeField('Publicado', default=timezone.now)
