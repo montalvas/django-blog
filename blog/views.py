@@ -24,7 +24,7 @@ class BlogDetailView(DetailView):
 class BlogCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'blog/post-new.html'
     model = Post
-    fields = ['title', 'content', 'image']
+    fields = ['title', 'image', 'content']
     success_url = reverse_lazy('blog:home')
     success_message = "%(field)s criado."
     

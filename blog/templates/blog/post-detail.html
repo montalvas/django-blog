@@ -12,6 +12,9 @@
         {% endfor %}
     </div>
     <div class="card-body">
+        {% if post.image %}
+        <img class="img-fluid" src="{{ post.image.url }}" />
+        {% endif %}
         <p>{{ post.content|safe }}</p>
     </div>
     {% if request.user == post.author %}
