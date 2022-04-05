@@ -8,6 +8,9 @@ from ckeditor.fields import RichTextField
 from django.db.models import signals
 from django.template.defaultfilters import slugify
 
+# IMAGES
+from django.utils.html import mark_safe
+
 # Create your models here.
 
 class PublishedManager(models.Manager):
@@ -58,8 +61,6 @@ class Post(models.Model):
     
     def get_absolute_url(self):
         return reverse('blog:post-detail', args=[self.slug])
-
-
 
 def post_pre_save(signal, instance, sender, **kwargs):
     instance.slug = f'{instance.pk}-' + slugify(instance.title)
