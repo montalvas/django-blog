@@ -28,8 +28,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">About</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">Contact</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:post-new' %}">+ nova postagem</a></li>
                 </ul>
                 {% if request.user.is_authenticated %}
@@ -61,30 +59,38 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <ul class="list-inline text-center">
+                        {% if TWITTER %}
                         <li class="list-inline-item">
-                            <a href="#!">
+                            <a href="{{ TWITTER }}" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
                         </li>
+                        {% endif %}
+
+                        {% if FACEBOOK %}
                         <li class="list-inline-item">
-                            <a href="#!">
+                            <a href="{{ FACEBOOK }}" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
                         </li>
+                        {% endif %}
+
+                        {% if GITHUB %}
                         <li class="list-inline-item">
-                            <a href="#!">
+                            <a href="{{ GITHUB }}" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                     <div class="small text-center text-muted fst-italic">Copyright &copy; Blog feito em 2022</div>
                 </div>

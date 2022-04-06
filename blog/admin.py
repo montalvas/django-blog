@@ -8,8 +8,7 @@ from .models import Post, Category
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'author',
-                    'created', 'updated', 'status')
+    list_display = ('title', 'slug', 'author', 'status')
     
     list_filter = ('status', 'created', 'published', 'author')
     # Faz a filtragem dos resultados por atributo
@@ -19,7 +18,7 @@ class PostAdmin(admin.ModelAdmin):
             f"<img src='{obj.image.url}' width='400px' />"
         )
     
-    readonly_fields = ('image_preview',)
+    readonly_fields = ('created', 'updated', 'image_preview')
     
     # raw_id_fields = ('author',)
     # Permite a seleção de mais de um objeto para o atributo
