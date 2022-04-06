@@ -43,7 +43,6 @@ class BlogUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'blog/post-update.html'
     model = Post
     fields = ['title', 'image', 'category', 'content']
-    success_url = reverse_lazy('blog:home')
     success_message = "%(field)s alterado com sucesso."
     
     def get_success_message(self, cleaned_data):
