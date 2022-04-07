@@ -26,6 +26,7 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
     # API
     path('api/v1/', include(router.urls)),
+    path('api/auth/', include('rest_framework.urls'))
 ]
 
 if settings.DEBUG:
