@@ -1,6 +1,12 @@
 from django.urls import path
 from . import views
 
+from rest_framework.routers import SimpleRouter
+from .views import PostViewSet
+
+router = SimpleRouter()
+router.register('posts', PostViewSet)
+
 
 app_name = 'blog'
 

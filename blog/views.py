@@ -10,6 +10,11 @@ from django.contrib.messages.views import SuccessMessageMixin
 # USER
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+# API
+
+from rest_framework import viewsets
+from .serializers import PostSerializer
+
 # Create your views here.
 class BlogListView(ListView):
     template_name = 'blog/home.html'
@@ -60,3 +65,9 @@ class BlogDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(BlogDeleteView, self).delete(request, *args, **kwargs)
+    
+# API
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer

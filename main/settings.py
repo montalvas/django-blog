@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # libraries
     'crispy_forms',
     'ckeditor',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -182,6 +183,10 @@ EMAIL_PORT = '2525'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# API
 
-
-
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

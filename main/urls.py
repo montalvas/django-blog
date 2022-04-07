@@ -17,12 +17,15 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from blog.urls import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls', namespace='blog')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
-    path('contact/', include('contact.urls'))
+    path('contact/', include('contact.urls')),
+    # API
+    path('api/v1/', include(router.urls)),
 ]
 
 if settings.DEBUG:
