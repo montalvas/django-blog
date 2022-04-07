@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'blog',
     'accounts',
     'social',
+    'contact',
     # libraries
     'crispy_forms',
     'ckeditor',
@@ -171,6 +172,10 @@ CKEDITOR_CONFIGS = {
         'width': 'auto',
     },
 }
+
+# EMAIL CONSOLE
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 

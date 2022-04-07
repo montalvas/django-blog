@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import TemplateView, ListView
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
 from django.urls import reverse_lazy
